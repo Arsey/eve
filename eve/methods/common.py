@@ -575,7 +575,8 @@ def build_response_document(
     resolve_document_version(document, resource, 'GET', latest_doc)
 
     # resolve media
-    resolve_media_files(document, resource)
+    if not config.RETURN_MEDIA_AS_ID_OBJECT:
+        resolve_media_files(document, resource)
 
     # resolve soft delete
     if resource_def['soft_delete'] is True:
